@@ -1,29 +1,32 @@
 //////////////////////////////////EMPLOYEES
 function Employee () {
-  this.firstName = "";
-  this.lastName = "";
+  this.firstName = "",
+  this.lastName = ""
 }
 
 function Clinician (x) {
-  this.expertise = x; //registered nurse, xray technician, pediatrician
+  this.jobType = "Clinician",
+  this.expertise = x //registered nurse, xray technician, pediatrician
 }
 
-function Operations () {
-  this.jobType = "Operations";
-  this.responsibility = ""; //Payroll, purchasing, compliance
+function Operations (y) {
+  this.jobType = "Operations",
+  this.responsibility = y //Payroll, purchasing, compliance
 }
 
 //////////////////////////////////DEPARTMENTS
 function Department () {
-  this.deptName = "";
+  this.deptName = ""
 }
 
-function FieldOffice () {
-  this.location = "";
+function FieldOffice (z) {
+  this.deptName = "Field Office",
+  this.location = z
 }
 
-function Headquarters () {
-
+function Headquarters (a) {
+  this.deptName = "Headquarters",
+  this.location = a
 }
 
 Clinician.prototype = new Employee();
@@ -45,22 +48,18 @@ employee2.deptName = "Obstetrics";
 employee2.location = "Hendersonville";
 console.log("Employee 2: ", employee2);
 
-var employee3 = new Operations();
+var employee3 = new Operations("Payroll");
 employee3.firstName = "Harold";
 employee3.lastName = "Smith";
-employee3.responsibility = "Payroll";
-employee3.location = new FieldOffice();
+employee3.location = new FieldOffice("Franklin");
 employee3.location.deptName = "Headquarters";
-employee3.location.location = "Franklin";
 console.log("Employee 3: ", employee3);
 
-var employee4 = new Operations();
+var employee4 = new Operations("Compliance");
 employee4.firstName = "Maximus";
 employee4.lastName = "Assante";
-employee4.responsibility = "Compliance";
-employee4.location = new FieldOffice();
+employee4.location = new FieldOffice("Franklin");
 employee4.location.deptName = "Headquarters";
-employee4.location.location = "Franklin";
 console.log("Employee 4: ", employee4);
 
 console.log(`${employee1.firstName} ${employee1.lastName} works in ${employee1.deptName}, in the ${employee1.location} ${employee1.location.deptName} location, and is specializes as a ${employee1.expertise}.`);
