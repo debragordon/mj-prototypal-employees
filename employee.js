@@ -1,26 +1,69 @@
-// Employees
+//////////////////////////////////EMPLOYEES
+function Employee () {
+  this.firstName = "";
+  this.lastName = "";
+}
 
-// Create a two-level prototype chain for creating employees in your business. Start off with an Employee function. Then create two other functions named Clinician, and Operations that have Employee on their prototype chain.
+function Clinician (x) {
+  this.expertise = x; //registered nurse, xray technician, pediatrician
+}
 
-// Departments
+function Operations () {
+  this.jobType = "Operations";
+  this.responsibility = ""; //Payroll, purchasing, compliance
+}
 
-// Create a two-level prototype chain for creating departments in your business. Start off with a Department function. Then create two other functions named FieldOffice, and Headquarters that have Department on their prototype chain.
+//////////////////////////////////DEPARTMENTS
+function Department () {
+  this.deptName = "";
+}
 
-// Requirements
+function FieldOffice () {
+  this.location = "";
+}
 
-// Every employee should have a first and last name.
-// Every department should have a name.
-// Every employee should be assigned to either the FieldOffice or Headquarters department. This is a has-a relationship.
-// Clinician employees should have a property for their area of medical expertise (e.g. physical therapist, phrenologist, anesthesiologist, etc.)
-// Operations employees should have a property for their area of responsibility (e.g. IT, revenue, compliance, etc.)
-// Every field office should have a unique city.
-// Create a minimum of 4 employees - 2 clinicians, and 2 operations - that have been assigned to a specific department.
-// Output the following information to the console for each employee.
-// Full name
-// Department name
-// Expertise/responsibility
-// sample output
+function Headquarters () {
 
-// Deborah Harris works as a clinician, in the Baltimore field office, and is a phrenologist.
-// Michael Slazinski works in operations, in headquarters, and is responsible for compliance.
-// Margaret Johnson works as a clinician, in the Indianapolis field office, and is a physical therapist.
+}
+
+Clinician.prototype = new Employee();
+Operations.prototype = new Employee();
+FieldOffice.prototype = new Department();
+Headquarters.prototype = new Department();
+
+var employee1 = new Clinician("Pedicatrician");
+employee1.firstName = "Marie";
+employee1.lastName = "Gordon";
+employee1.deptName = "Pediatrics";
+employee1.location = "Nashville";
+console.log("Employee 1: ", employee1);
+
+var employee2 = new Clinician("XRay Technician");
+employee2.firstName = "Taylor";
+employee2.lastName = "Owens";
+employee2.deptName = "Obstetrics";
+employee2.location = "Hendersonville";
+console.log("Employee 2: ", employee2);
+
+var employee3 = new Operations();
+employee3.firstName = "Harold";
+employee3.lastName = "Smith";
+employee3.responsibility = "Payroll";
+employee3.location = new FieldOffice();
+employee3.location.deptName = "Headquarters";
+employee3.location.location = "Franklin";
+console.log("Employee 3: ", employee3);
+
+var employee4 = new Operations();
+employee4.firstName = "Maximus";
+employee4.lastName = "Assante";
+employee4.responsibility = "Compliance";
+employee4.location = new FieldOffice();
+employee4.location.deptName = "Headquarters";
+employee4.location.location = "Franklin";
+console.log("Employee 4: ", employee4);
+
+console.log(`${employee1.firstName} ${employee1.lastName} works in ${employee1.deptName}, in the ${employee1.location} ${employee1.location.deptName} location, and is specializes as a ${employee1.expertise}.`);
+console.log(`${employee2.firstName} ${employee2.lastName} works in ${employee2.deptName}, in the ${employee2.location} ${employee2.location.deptName} location, and is specializes as a ${employee2.expertise}.`);
+console.log(`${employee3.firstName} ${employee3.lastName} works in ${employee3.jobType}, in the ${employee3.location.location} ${employee3.location.deptName} location, and is responsible for ${employee3.responsibility}.`);
+console.log(`${employee4.firstName} ${employee4.lastName} works in ${employee4.jobType}, in the ${employee4.location.location} ${employee4.location.deptName} location, and is responsible for ${employee4.responsibility}.`);
