@@ -1,7 +1,8 @@
 //////////////////////////////////EMPLOYEES
 function Employee () {
   this.firstName = "",
-  this.lastName = ""
+  this.lastName = "",
+  this.department = {}
 }
 
 function Clinician (x) {
@@ -15,54 +16,48 @@ function Operations (y) {
 }
 
 //////////////////////////////////DEPARTMENTS
-function Department () {
-  this.deptName = ""
+function Department (b) {
+  this.deptName = b
 }
 
 function FieldOffice (z) {
-  this.deptName = "Field Office",
   this.location = z
 }
 
 function Headquarters (a) {
-  this.deptName = "Headquarters",
   this.location = a
 }
 
 Clinician.prototype = new Employee();
 Operations.prototype = new Employee();
-FieldOffice.prototype = new Department();
-Headquarters.prototype = new Department();
+FieldOffice.prototype = new Department("Field Office");
+Headquarters.prototype = new Department("Headquarters");
 
 var employee1 = new Clinician("Pedicatrician");
 employee1.firstName = "Marie";
 employee1.lastName = "Gordon";
-employee1.deptName = "Pediatrics";
-employee1.location = "Nashville";
+employee1.department = new FieldOffice("Franklin");
 console.log("Employee 1: ", employee1);
 
 var employee2 = new Clinician("XRay Technician");
 employee2.firstName = "Taylor";
 employee2.lastName = "Owens";
-employee2.deptName = "Obstetrics";
-employee2.location = "Hendersonville";
+employee2.department = new FieldOffice("Franklin");
 console.log("Employee 2: ", employee2);
 
 var employee3 = new Operations("Payroll");
 employee3.firstName = "Harold";
 employee3.lastName = "Smith";
-employee3.location = new FieldOffice("Franklin");
-employee3.location.deptName = "Headquarters";
+employee3.department = new Headquarters("Franklin");
 console.log("Employee 3: ", employee3);
 
 var employee4 = new Operations("Compliance");
 employee4.firstName = "Maximus";
 employee4.lastName = "Assante";
-employee4.location = new FieldOffice("Franklin");
-employee4.location.deptName = "Headquarters";
+employee4.department = new Headquarters("Franklin");
 console.log("Employee 4: ", employee4);
 
-console.log(`${employee1.firstName} ${employee1.lastName} works in ${employee1.deptName}, in the ${employee1.location} ${employee1.location.deptName} location, and is specializes as a ${employee1.expertise}.`);
-console.log(`${employee2.firstName} ${employee2.lastName} works in ${employee2.deptName}, in the ${employee2.location} ${employee2.location.deptName} location, and is specializes as a ${employee2.expertise}.`);
-console.log(`${employee3.firstName} ${employee3.lastName} works in ${employee3.jobType}, in the ${employee3.location.location} ${employee3.location.deptName} location, and is responsible for ${employee3.responsibility}.`);
-console.log(`${employee4.firstName} ${employee4.lastName} works in ${employee4.jobType}, in the ${employee4.location.location} ${employee4.location.deptName} location, and is responsible for ${employee4.responsibility}.`);
+console.log(`${employee1.firstName} ${employee1.lastName} works in ${employee1.jobType}, in the ${employee1.department.location} ${employee1.department.deptName} location, and is specializes as a ${employee1.expertise}.`);
+console.log(`${employee2.firstName} ${employee2.lastName} works in ${employee2.jobType}, in the ${employee2.department.location} ${employee2.department.deptName} location, and is specializes as a ${employee2.expertise}.`);
+console.log(`${employee3.firstName} ${employee3.lastName} works in ${employee3.jobType}, in the ${employee3.department.location} ${employee3.department.deptName} location, and is responsible for ${employee3.responsibility}.`);
+console.log(`${employee4.firstName} ${employee4.lastName} works in ${employee4.jobType}, in the ${employee4.department.location} ${employee4.department.deptName} location, and is responsible for ${employee4.responsibility}.`);
